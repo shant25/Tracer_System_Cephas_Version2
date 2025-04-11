@@ -1,0 +1,229 @@
+tracer-app/                               # 🧩 Root of the full-stack application
+├── .gitignore                            # Git ignore rules for the whole project
+├── package.json                          # (Optional) Root-level scripts (e.g., start:client, start:server)
+├── README.md                             # 📘 Project documentation
+├── docker-compose.yml                    # 🐳 Docker configuration for services (DB, backend, frontend, etc.)
+
+├── client/                               # 🌐 Frontend React Application
+│   ├── .env                              # Environment variables (shared)
+│   ├── .env.development                  # Dev-specific env vars
+│   ├── .env.production                   # Production-specific env vars
+│   ├── .gitignore                        # Git ignores for frontend
+│   ├── jsconfig.json                     # Path aliasing and IntelliSense setup
+│   ├── package.json                      # Frontend dependencies and scripts
+│   ├── tailwind.config.js                # TailwindCSS configuration
+│   ├── README.md                         # Frontend-specific docs
+
+│   ├── public/                           # Static public assets
+│   │   ├── favicon.ico                   # Browser tab icon
+│   │   ├── index.html                    # HTML entry point
+│   │   ├── logo192.png                   # PWA asset
+│   │   ├── logo512.png                   # PWA asset
+│   │   ├── manifest.json                 # PWA manifest
+│   │   └── robots.txt                    # Crawler config
+
+│   └── src/                              # 🔧 Application source code
+│       ├── App.js                        # Main app component
+│       ├── config.js                     # App-wide config (URLs, constants)
+│       ├── index.js                      # Entry point for ReactDOM rendering
+│       ├── routes.js                     # App routing definitions
+
+│       ├── assets/                       # 📁 Static assets
+│       │   ├── images/
+│       │   │   └── logo.png              # App logo or branding
+│       │   └── styles/
+│       │       └── tailwind.css          # Tailwind CSS entry file
+
+│       ├── components/                   # 🔌 Reusable components
+│       │   ├── common/                   # General-use components
+│       │   │   ├── Button.jsx
+│       │   │   ├── Card.jsx
+│       │   │   ├── DataTable.jsx
+│       │   │   ├── Dropdown.jsx
+│       │   │   ├── FilterBar.jsx
+│       │   │   ├── FormInput.jsx
+│       │   │   ├── Modal.jsx
+│       │   │   ├── SearchBar.jsx
+│       │   │   └── StatusBadge.jsx
+│       │   ├── forms/                    # Form-specific components (e.g., FormBuilder)
+│       │   ├── layout/                   # Page layout components
+│       │   │   ├── DashboardLayout.jsx
+│       │   │   ├── MainLayout.jsx
+│       │   │   ├── Navbar.jsx
+│       │   │   └── Sidebar.jsx
+│       │   ├── modals/                   # Modal-specific components
+│       │   └── widgets/                  # Custom UI widgets (e.g., charts, cards)
+
+│       ├── contexts/                     # 🔁 React Context providers
+│       │   ├── AuthContext.js            # Auth context (login state, tokens)
+│       │   └── TracerContext.js          # App-specific context
+
+│       ├── hooks/                        # 🎣 Custom React hooks
+│       │   ├── useAuth.js
+│       │   ├── useTracer.js
+│       │   ├── useForm.js
+│       │   └── useNotification.js
+
+│       ├── pages/                        # 📄 Page views
+│       │   ├── auth/                     # Auth-related pages
+│       │   │   ├── Login.jsx
+│       │   │   ├── ForgotPassword.jsx
+│       │   │   └── ResetPassword.jsx
+│       │   ├── dashboard/                # Dashboard pages (overview, widgets)
+│       │   ├── projects/                 # Project list/detail pages
+│       │   ├── tasks/                    # Task management views
+│       │   ├── users/                    # User management views
+│       │   ├── settings/                 # User/admin settings
+│       │   └── errors/                   # 404, 500 error pages
+
+│       ├── services/                     # 🌐 API service wrappers
+│       │   ├── api.js                    # Axios instance
+│       │   ├── auth.service.js
+│       │   ├── project.service.js
+│       │   ├── task.service.js
+│       │   └── user.service.js
+
+│       ├── utils/                        #⚙️ Utility/helper functions
+│       │   ├── accessControl.js          # Role/permission checking
+│       │   ├── dateUtils.js              # Formatters, comparisons
+│       │   ├── formatters.js             # Number, text formatters
+│       │   ├── notification.js           # Toast handlers, etc.
+│       │   └── validators.js             # Input validation
+
+│       └── redux/                        # 🧠 Global Redux state
+│           ├── actions/
+│           │   ├── authActions.js
+│           │   ├── buildingActions.js
+│           │   ├── orderActions.js
+│           │   ├── activationActions.js
+│           │   ├── materialActions.js
+│           │   ├── serviceInstallerActions.js
+│           │   ├── splitterActions.js
+│           │   ├── uiActions.js
+│           │   └── types.js              # Action type constants
+
+│           ├── reducers/
+│           │   ├── authReducer.js
+│           │   ├── buildingReducer.js
+│           │   ├── orderReducer.js
+│           │   ├── activationReducer.js
+│           │   ├── materialReducer.js
+│           │   ├── serviceInstallerReducer.js
+│           │   ├── splitterReducer.js
+│           │   ├── uiReducer.js
+│           │   └── index.js              # Combine reducers
+
+│           ├── store.js                  # Redux store configuration
+│           └── selectors/                # Data selection helpers
+│               ├── authSelectors.js
+│               ├── buildingSelectors.js
+│               └── ...                   # Additional selectors
+
+├── server/                               # 🖥️ Backend Node/Express API
+│   ├── .env
+│   ├── .env.development
+│   ├── .env.test
+│   ├── .env.production
+│   ├── package.json                      # Backend dependencies
+│   ├── app.js                            # App initialization
+│   └── server.js                         # Start server and listen on port
+
+│   ├── config/                           # ⚙️ Server and DB configuration
+│   │   ├── database.js                   # DB connection setup
+│   │   ├── express.js                    # Express app middleware
+│   │   ├── middleware.js                 # App-wide middleware config
+│   │   └── env.js                        # Loads environment variables
+
+│   ├── controllers/                      # 🧠 Business logic handlers
+│   │   ├── auth.controller.js
+│   │   ├── project.controller.js
+│   │   ├── task.controller.js
+│   │   └── user.controller.js
+
+│   ├── middlewares/                      # 🛡️ Express middleware
+│   │   ├── auth.middleware.js            # Auth checks
+│   │   ├── error.middleware.js           # Global error handler
+│   │   ├── validate.middleware.js        # Request validation
+│   │   └── upload.middleware.js          # Multer/file upload handling
+
+│   ├── models/                           # 🗃️ Database schemas/models
+│   │   ├── project.model.js
+│   │   ├── task.model.js
+│   │   └── user.model.js
+
+│   ├── routes/                           # 🌐 API endpoints
+│   │   ├── auth.routes.js
+│   │   ├── project.routes.js
+│   │   ├── task.routes.js
+│   │   ├── user.routes.js
+│   │   └── index.js                      # Combine & export all routes
+
+│   ├── services/                         # 🔁 Service layer logic
+│   │   ├── auth.service.js
+│   │   ├── email.service.js
+│   │   ├── project.service.js
+│   │   └── task.service.js
+
+│   ├── utils/                            # ⚙️ Backend utilities
+│   │   ├── logger.js                     # Winston/logger setup
+│   │   ├── apiResponse.js                # Standard API response format
+│   │   ├── validators.js                 # Joi/Zod schemas
+│   │   └── errorHandler.js               # Error formatting
+
+│   └── tests/                            # ✅ Tests
+│       ├── unit/                         # Unit tests
+│       └── integration/                  # Integration tests
+
+
+ client/src/components/forms/
+
+forms/
+├── LoginForm.jsx               # Form for user login
+├── RegistrationForm.jsx        # Form for user registration
+├── ProjectForm.jsx             # Create/edit project form
+├── TaskForm.jsx                # Create/edit task form
+├── UserForm.jsx                # Create/edit user form
+├── ProfileForm.jsx             # User profile update form
+└── PasswordResetForm.jsx       # Reset password input form
+
+
+client/src/components/modals/
+
+modals/
+├── ConfirmModal.jsx            # Generic yes/no confirmation modal
+├── CreateProjectModal.jsx      # Modal for creating a new project
+├── EditProjectModal.jsx        # Modal for editing a project
+├── CreateTaskModal.jsx         # Modal for creating a new task
+├── EditTaskModal.jsx           # Modal for editing a task
+├── UserDetailModal.jsx         # Modal to display user info
+└── ErrorModal.jsx              # Modal to show error messages
+
+
+client/src/components/widgets/
+
+widgets/
+├── ProjectSummaryCard.jsx      # Card showing project stats
+├── TaskProgressBar.jsx         # Widget showing task completion
+├── ActivityTimeline.jsx        # Widget displaying recent activity
+├── StatCard.jsx                # Generic stat display box
+├── UserAvatar.jsx              # Avatar component with initials/image
+└── TaskStatusChart.jsx         # Pie chart or bar showing task status breakdown
+
+ client/src/redux/selectors/
+
+selectors/
+├── authSelectors.js            # e.g., isAuthenticated, getUserRole
+├── buildingSelectors.js        # e.g., getBuildingsList, getBuildingById
+├── orderSelectors.js           # e.g., getOrders, getOrderStatusCounts
+├── activationSelectors.js      # e.g., getActiveConnections
+├── materialSelectors.js        # e.g., getMaterials, filterByType
+├── serviceInstallerSelectors.js# e.g., getInstallers, getAvailability
+├── splitterSelectors.js        # e.g., getSplitters, getSplitterStatus
+├── taskSelectors.js            # e.g., getAllTasks, getTasksByProject
+├── projectSelectors.js         # e.g., getProjectList, getProjectDetails
+├── userSelectors.js            # e.g., getUsers, getUserPermissions
+└── uiSelectors.js              # e.g., isLoading, getTheme, getSidebarState
+
+
+
+
